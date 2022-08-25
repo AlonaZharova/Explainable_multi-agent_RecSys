@@ -38,26 +38,27 @@ For the day-ahead prices provided by the Price Agent, we access the online datab
 
 ## Project structure
 ````
-    ├── README.txt                                                  # this readme file
+    ├── README.md                                                  # this readme file
+    │    
+    ├── requirements.txt                                            # this file may be used to create an environment
+    │
+    ├── structure.jpg                                            # figure of the multi-agent structure
     │
     ├── code.                                                       # agent notebooks + .py scripts
-    │   ├── Activity_Agent.ipynb
-    │   ├── Evaluation_Agent.ipynb
-    │   ├── Load_Agent.ipynb
-    │   ├── Preparation_Agent.ipynb
-    │   ├── Price_Agent.ipynb
-    │   ├── Recommendation_Agent.ipynb
-    │   ├── Usage_Agent.ipynb
+    │   ├── Project.ipynb
     │   ├── agents.py
+    │   ├── grid_search.py
     │   └── helper_functions.py
     │
-    ├── data                                                            # REFIT household data, price data, REFIT readme
-    │   ├── CLEAN_House1.csv                                            # household data (Murray et al., 2017, household 1 to 10) 
-    │   ├── [...]                                                       # is not included, however required for evaluation
-    │   ├── CLEAN_House10.csv                                           
+    ├── data                                                            # data
+    │   ├── processed_pickle                                           
+    │   |   ├── activity_df.pkl                                             
+    │   |   ├── df_th.pkl                                           
+    │   |   ├── load_df.pkl                                           
+    │   |   ├── price_df.pkl                                           
+    │   |   ├── usage_df.pkl                                                   
+    │   ├── Day-ahead Prices_201501010000-201601010000.csv                                                     
     │   ├── REFIT_Readme.txt
-    │   └── Day-ahead Prices_201501010000-201601010000.csv              # day-ahead prices provided by ENTSO-E, n.d.
-    │
     │
     └── export                                                      # path for exporting configurations and intermediate results
         ├── 1_config.json                                               # configurations used for evaluating households 1 to 10
