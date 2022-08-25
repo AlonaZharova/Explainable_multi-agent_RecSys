@@ -38,19 +38,19 @@ For the day-ahead prices provided by the Price Agent, we access the online datab
 
 ## Project structure
 ````
-    ├── README.md                                                  # this readme file
+    ├── README.md                                             # this readme file
     │    
-    ├── requirements.txt                                            # this file may be used to create an environment
+    ├── requirements.txt                                      # this file may be used to create an environment
     │
-    ├── structure.jpg                                            # figure of the multi-agent structure
+    ├── structure.jpg                                         # figure of the multi-agent structure
     │
-    ├── code.                                                       # agent notebooks + .py scripts
+    ├── code.                                                 # agent notebooks + .py scripts
     │   ├── Project.ipynb
     │   ├── agents.py
     │   ├── grid_search.py
     │   └── helper_functions.py
     │
-    ├── data                                                            # data
+    ├── data                                                  # data
     │   ├── processed_pickle                                           
     │   |   ├── activity_df.pkl                                             
     │   |   ├── df_th.pkl                                           
@@ -60,8 +60,8 @@ For the day-ahead prices provided by the Price Agent, we access the online datab
     │   ├── Day-ahead Prices_201501010000-201601010000.csv                                                     
     │   ├── REFIT_Readme.txt
     │
-    └── export                                                      # path for exporting configurations and intermediate results
-        ├── 1_config.json                                               # configurations used for evaluating households 1 to 10
+    └── export                                                # path for exporting configurations and intermediate results
+        ├── 1_config.json                                     # configurations used for evaluating households 1 to 10
         ├── [...]
         └── 10_config.json
 ````
