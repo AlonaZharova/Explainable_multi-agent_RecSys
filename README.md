@@ -29,5 +29,40 @@ We use the REFIT Electrical Load Measurements data ([Murray et al., 2017](https:
 
 For the day-ahead prices provided by the Price Agent, we access the online database for industry day-ahead prices for the United Kingdom ([ENTSO-E, 2015](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show)). 
 
+## Usage Docker Container
 
+```
+docker build . -t xai 
+docker run -it --name xai -v $(pwd):/root/xai/ xai bash
+```
+
+
+## Project structure
+````
+    ├── README.txt                                                  # this readme file
+    │
+    ├── code.                                                       # agent notebooks + .py scripts
+    │   ├── Activity_Agent.ipynb
+    │   ├── Evaluation_Agent.ipynb
+    │   ├── Load_Agent.ipynb
+    │   ├── Preparation_Agent.ipynb
+    │   ├── Price_Agent.ipynb
+    │   ├── Recommendation_Agent.ipynb
+    │   ├── Usage_Agent.ipynb
+    │   ├── agents.py
+    │   └── helper_functions.py
+    │
+    ├── data                                                            # REFIT household data, price data, REFIT readme
+    │   ├── CLEAN_House1.csv                                            # household data (Murray et al., 2017, household 1 to 10) 
+    │   ├── [...]                                                       # is not included, however required for evaluation
+    │   ├── CLEAN_House10.csv                                           
+    │   ├── REFIT_Readme.txt
+    │   └── Day-ahead Prices_201501010000-201601010000.csv              # day-ahead prices provided by ENTSO-E, n.d.
+    │
+    │
+    └── export                                                      # path for exporting configurations and intermediate results
+        ├── 1_config.json                                               # configurations used for evaluating households 1 to 10
+        ├── [...]
+        └── 10_config.json
+````
 
