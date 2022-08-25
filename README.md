@@ -23,12 +23,6 @@ We provide a comprehensive tutorial in Jupyter Notebook with code in Python for 
 
 **Keywords:** recommendation system, multi-agent system, explainable AI, load shifting, energy consumption behavior.
 
-## Data
-
-We use the REFIT Electrical Load Measurements data ([Murray et al., 2017](https://www.nature.com/articles/sdata2016122)) to analyze our recommender system. The data contains the energy consumption of nine different devices used in 20 households in the United Kingdom from 2013 to 2015. 
-
-For the day-ahead prices provided by the Price Agent, we access the online database for industry day-ahead prices for the United Kingdom ([ENTSO-E, 2015](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show)). 
-
 ## Usage Docker Container
 
 ```
@@ -36,6 +30,11 @@ docker build . -t xai
 docker run -it --name xai -v $(pwd):/root/xai/ xai bash
 ```
 
+## Data
+
+We use the REFIT Electrical Load Measurements data ([Murray et al., 2017](https://www.nature.com/articles/sdata2016122)) to analyze our recommender system. The data contains the energy consumption of nine different devices used in 20 households in the United Kingdom from 2013 to 2015. 
+
+For the day-ahead prices provided by the Price Agent, we access the online database for industry day-ahead prices for the United Kingdom ([ENTSO-E, 2015](https://transparency.entsoe.eu/transmission-domain/r2/dayAheadPrices/show)). 
 
 ## Project structure
 ````
@@ -66,3 +65,18 @@ docker run -it --name xai -v $(pwd):/root/xai/ xai bash
         └── 10_config.json
 ````
 
+### Adding Data:
+ - Due to file size restrictions, we did not include any of the REFIT: Electrical Load Measurements data (Murray et al. 2017)
+ - These files can be accessed using the following link: https://www.doi.org/10.15129/9ab14b0e-19ac-4279-938f-27f643078cec
+ - After downloading the clean household data needs to be copied to ./data
+
+## Citation
+
+If you use this code in your research, please cite our [...].
+
+```
+[...]
+```
+
+## Contact
+- Alona Zharova, alona.zharova@hu-berlin.de
