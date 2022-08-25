@@ -23,13 +23,6 @@ We provide a comprehensive tutorial in Jupyter Notebook with code in Python for 
 
 **Keywords:** recommendation system, multi-agent system, explainable AI, load shifting, energy consumption behavior.
 
-## Usage Docker Container
-
-```
-docker build . -t xai 
-docker run -it --name xai -v $(pwd):/root/xai/ xai bash
-```
-
 ## Data
 
 We use the REFIT Electrical Load Measurements data ([Murray et al., 2017](https://www.nature.com/articles/sdata2016122)) to analyze our recommender system. The data contains the energy consumption of nine different devices used in 20 households in the United Kingdom from 2013 to 2015. 
