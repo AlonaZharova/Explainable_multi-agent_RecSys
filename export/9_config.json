@@ -1,0 +1,199 @@
+{
+    "data": {
+        "household": 9,
+        "first_date": "2013-12-18",
+        "last_date": "2015-07-07",
+        "start_dates": {
+            "activity": "2013-12-21",
+            "usage": "2013-12-20",
+            "load": "2013-12-18",
+            "usage_washer_dryer": "2013-12-20",
+            "usage_washing_machine": "2013-12-20",
+            "usage_dishwasher": "2013-12-20",
+            "combined": "2013-12-21"
+        }
+    },
+    "user_input": {
+        "shiftable_devices": [
+            "Washer Dryer",
+            "Washing Machine",
+            "Dishwasher"
+        ],
+        "active_appliances": [
+            "Washer Dryer",
+            "Washing Machine",
+            "Dishwasher",
+            "Microwave",
+            "Kettle"
+        ],
+        "threshold": 0.01
+    },
+    "preparation": {
+        "activity": {
+            "truncate": {
+                "features": "all",
+                "factor": 1.5,
+                "verbose": 0
+            },
+            "scale": {
+                "features": "all",
+                "kind": "MinMax",
+                "verbose": 0
+            },
+            "aggregate": {
+                "resample_param": "60T"
+            },
+            "activity": {
+                "active_appliances": [
+                    "Washer Dryer",
+                    "Washing Machine",
+                    "Dishwasher",
+                    "Microwave",
+                    "Kettle"
+                ],
+                "threshold": 0.01
+            },
+            "time": {
+                "features": [
+                    "hour",
+                    "day_name"
+                ]
+            },
+            "activity_lag": {
+                "features": [
+                    "activity"
+                ],
+                "lags": [
+                    24,
+                    48,
+                    72
+                ]
+            }
+        },
+        "usage": {
+            "truncate": {
+                "features": "all",
+                "factor": 1.5,
+                "verbose": 0
+            },
+            "scale": {
+                "features": "all",
+                "kind": "MinMax",
+                "verbose": 0
+            },
+            "activity": {
+                "active_appliances": [
+                    "Washer Dryer",
+                    "Washing Machine",
+                    "Dishwasher",
+                    "Microwave",
+                    "Kettle"
+                ],
+                "threshold": 0.01
+            },
+            "aggregate_hour": {
+                "resample_param": "60T"
+            },
+            "aggregate_day": {
+                "resample_param": "24H"
+            },
+            "time": {
+                "features": [
+                    "hour",
+                    "day_name"
+                ]
+            },
+            "shiftable_devices": [
+                "Washer Dryer",
+                "Washing Machine",
+                "Dishwasher"
+            ],
+            "device": {
+                "threshold": 0.01
+            }
+        },
+        "load": {
+            "truncate": {
+                "features": "all",
+                "factor": 1.5,
+                "verbose": 0
+            },
+            "scale": {
+                "features": "all",
+                "kind": "MinMax",
+                "verbose": 0
+            },
+            "aggregate": {
+                "resample_param": "60T"
+            },
+            "shiftable_devices": [
+                "Washer Dryer",
+                "Washing Machine",
+                "Dishwasher"
+            ],
+            "device": {
+                "threshold": 0.01
+            }
+        }
+    },
+    "activity": {
+        "model_type": "logit",
+        "split_params": {
+            "train_start": "2013-12-21",
+            "test_delta": {
+                "days": 1,
+                "seconds": -1
+            },
+            "target": "activity"
+        }
+    },
+    "usage": {
+        "model_type": "logit",
+        "train_start": "2013-12-20"
+    },
+    "usage_washer_dryer": {
+        "model_type": "logit",
+        "train_start": "2013-12-20"
+    },
+    "usage_washing_machine": {
+        "model_type": "logit",
+        "train_start": "2013-12-20"
+    },
+    "usage_dishwasher": {
+        "model_type": "logit",
+        "train_start": "2013-12-20"
+    },
+    "load": {
+        "shiftable_devices": [
+            "Washer Dryer",
+            "Washing Machine",
+            "Dishwasher"
+        ]
+    },
+    "evaluation": {
+        "grid_search": {
+            "activity_thresholds": [
+                0.125,
+                0.25,
+                0.375,
+                0.5,
+                0.625,
+                0.75,
+                0.875
+            ],
+            "usage_thresholds": [
+                0.125,
+                0.25,
+                0.375,
+                0.5,
+                0.625,
+                0.75,
+                0.875
+            ],
+            "optimal_thresholds": {
+                "activity_threshold": "0.375",
+                "usage_threshold": "0.125"
+            }
+        }
+    }
+}

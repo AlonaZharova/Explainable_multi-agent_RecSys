@@ -1,0 +1,181 @@
+{
+    "data": {
+        "household": 5,
+        "first_date": "2013-09-27",
+        "last_date": "2015-07-05",
+        "start_dates": {
+            "activity": "2013-09-30",
+            "usage": "2013-09-29",
+            "load": "2013-09-27",
+            "usage_tumble_dryer": "2013-09-29",
+            "combined": "2013-09-30"
+        }
+    },
+    "user_input": {
+        "shiftable_devices": [
+            "Tumble Dryer"
+        ],
+        "active_appliances": [
+            "Tumble Dryer",
+            "Television Site",
+            "Combination Microwave",
+            "Kettle",
+            "Toaster"
+        ],
+        "threshold": 0.025
+    },
+    "preparation": {
+        "activity": {
+            "truncate": {
+                "features": "all",
+                "factor": 1.5,
+                "verbose": 0
+            },
+            "scale": {
+                "features": "all",
+                "kind": "MinMax",
+                "verbose": 0
+            },
+            "aggregate": {
+                "resample_param": "60T"
+            },
+            "activity": {
+                "active_appliances": [
+                    "Tumble Dryer",
+                    "Television Site",
+                    "Combination Microwave",
+                    "Kettle",
+                    "Toaster"
+                ],
+                "threshold": 0.025
+            },
+            "time": {
+                "features": [
+                    "hour",
+                    "day_name"
+                ]
+            },
+            "activity_lag": {
+                "features": [
+                    "activity"
+                ],
+                "lags": [
+                    24,
+                    48,
+                    72
+                ]
+            }
+        },
+        "usage": {
+            "truncate": {
+                "features": "all",
+                "factor": 1.5,
+                "verbose": 0
+            },
+            "scale": {
+                "features": "all",
+                "kind": "MinMax",
+                "verbose": 0
+            },
+            "activity": {
+                "active_appliances": [
+                    "Tumble Dryer",
+                    "Television Site",
+                    "Combination Microwave",
+                    "Kettle",
+                    "Toaster"
+                ],
+                "threshold": 0.025
+            },
+            "aggregate_hour": {
+                "resample_param": "60T"
+            },
+            "aggregate_day": {
+                "resample_param": "24H"
+            },
+            "time": {
+                "features": [
+                    "hour",
+                    "day_name"
+                ]
+            },
+            "shiftable_devices": [
+                "Tumble Dryer"
+            ],
+            "device": {
+                "threshold": 0.025
+            }
+        },
+        "load": {
+            "truncate": {
+                "features": "all",
+                "factor": 1.5,
+                "verbose": 0
+            },
+            "scale": {
+                "features": "all",
+                "kind": "MinMax",
+                "verbose": 0
+            },
+            "aggregate": {
+                "resample_param": "60T"
+            },
+            "shiftable_devices": [
+                "Tumble Dryer"
+            ],
+            "device": {
+                "threshold": 0.025
+            }
+        }
+    },
+    "activity": {
+        "model_type": "logit",
+        "split_params": {
+            "train_start": "2013-09-30",
+            "test_delta": {
+                "days": 1,
+                "seconds": -1
+            },
+            "target": "activity"
+        }
+    },
+    "usage": {
+        "model_type": "logit",
+        "train_start": "2013-09-29"
+    },
+    "usage_tumble_dryer": {
+        "model_type": "logit",
+        "train_start": "2013-09-29"
+    },
+    "load": {
+        "shiftable_devices": [
+            "Tumble Dryer"
+        ]
+    },
+    "evaluation": {
+        "grid_search": {
+            "activity_thresholds": [
+                0.125,
+                0.25,
+                0.375,
+                0.5,
+                0.625,
+                0.75,
+                0.875
+            ],
+            "usage_thresholds": [
+                0.125,
+                0.25,
+                0.375,
+                0.5,
+                0.625,
+                0.75,
+                0.875
+            ],
+            "optimal_thresholds": {
+                "activity_threshold": "0.75",
+                "usage_threshold": "0.25"
+            }
+        }
+    }
+}

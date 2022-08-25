@@ -1,0 +1,179 @@
+{
+    "data": {
+        "household": 3,
+        "first_date": "2013-09-26",
+        "last_date": "2015-06-01",
+        "start_dates": {
+            "activity": "2013-09-29",
+            "usage": "2013-09-28",
+            "load": "2013-09-26",
+            "usage_tumble_dryer": "2013-09-28",
+            "usage_washing_machine": "2013-09-28",
+            "usage_dishwasher": "2013-09-28",
+            "combined": "2013-09-29"
+        }
+    },
+    "user_input": {
+        "shiftable_devices": [
+            "Tumble Dryer",
+            "Washing Machine",
+            "Dishwasher"
+        ],
+        "active_appliances": [
+            "Tumble Dryer",
+            "Washing Machine",
+            "Dishwasher",
+            "Toaster",
+            "Television",
+            "Microwave",
+            "Kettle"
+        ],
+        "threshold": 0.01
+    },
+    "preparation": {
+        "activity": {
+            "truncate": {
+                "features": "all",
+                "factor": 1.5,
+                "verbose": 0
+            },
+            "scale": {
+                "features": "all",
+                "kind": "MinMax",
+                "verbose": 0
+            },
+            "aggregate": {
+                "resample_param": "60T"
+            },
+            "activity": {
+                "active_appliances": [
+                    "Tumble Dryer",
+                    "Washing Machine",
+                    "Dishwasher",
+                    "Toaster",
+                    "Television",
+                    "Microwave",
+                    "Kettle"
+                ],
+                "threshold": 0.01
+            },
+            "time": {
+                "features": [
+                    "hour",
+                    "day_name"
+                ]
+            },
+            "activity_lag": {
+                "features": [
+                    "activity"
+                ],
+                "lags": [
+                    24,
+                    48,
+                    72
+                ]
+            }
+        },
+        "usage": {
+            "truncate": {
+                "features": "all",
+                "factor": 1.5,
+                "verbose": 0
+            },
+            "scale": {
+                "features": "all",
+                "kind": "MinMax",
+                "verbose": 0
+            },
+            "activity": {
+                "active_appliances": [
+                    "Tumble Dryer",
+                    "Washing Machine",
+                    "Dishwasher",
+                    "Toaster",
+                    "Television",
+                    "Microwave",
+                    "Kettle"
+                ],
+                "threshold": 0.01
+            },
+            "aggregate_hour": {
+                "resample_param": "60T"
+            },
+            "aggregate_day": {
+                "resample_param": "24H"
+            },
+            "time": {
+                "features": [
+                    "hour",
+                    "day_name"
+                ]
+            },
+            "shiftable_devices": [
+                "Tumble Dryer",
+                "Washing Machine",
+                "Dishwasher"
+            ],
+            "device": {
+                "threshold": 0.01
+            }
+        },
+        "load": {
+            "truncate": {
+                "features": "all",
+                "factor": 1.5,
+                "verbose": 0
+            },
+            "scale": {
+                "features": "all",
+                "kind": "MinMax",
+                "verbose": 0
+            },
+            "aggregate": {
+                "resample_param": "60T"
+            },
+            "shiftable_devices": [
+                "Tumble Dryer",
+                "Washing Machine",
+                "Dishwasher"
+            ],
+            "device": {
+                "threshold": 0.01
+            }
+        }
+    },
+    "activity": {
+        "model_type": "ada",
+        "split_params": {
+            "train_start": "2013-09-29",
+            "test_delta": {
+                "days": 1,
+                "seconds": -1
+            },
+            "target": "activity"
+        }
+    },
+    "usage": {
+        "model_type": "ada",
+        "train_start": "2013-09-28"
+    },
+    "usage_tumble_dryer": {
+        "model_type": "ada",
+        "train_start": "2013-09-28"
+    },
+    "usage_washing_machine": {
+        "model_type": "ada",
+        "train_start": "2013-09-28"
+    },
+    "usage_dishwasher": {
+        "model_type": "ada",
+        "train_start": "2013-09-28"
+    },
+    "load": {
+        "shiftable_devices": [
+            "Tumble Dryer",
+            "Washing Machine",
+            "Dishwasher"
+        ]
+    }
+}
