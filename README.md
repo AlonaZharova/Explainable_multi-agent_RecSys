@@ -9,7 +9,7 @@ Explainable Multi-Agent Recommendation System for Energy-Efficient Smart Home.
 ```
 The paper is available at: [...]
 
-![results](/structure.jpg)
+![results](/recommendation4user.jpg)
 
 ## Summary 
 
