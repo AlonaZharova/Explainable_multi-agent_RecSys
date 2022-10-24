@@ -68,10 +68,16 @@ For the day-ahead prices provided by the Price Agent, we access the online datab
 
 ## Citation
 
-If you use this code in your research, please cite our [...].
+If you use this code in your research, please cite our [paper](https://doi.org/10.48550/arXiv.2210.11218).
 
 ```
-[...]
+@misc{ZBKSV2022,
+  title = {Explainable Multi-Agent Recommendation System for Energy-Efficient Smart Home},
+  author = {Zharova, Alona and Boer, Annika and Knoblauch, Julia and Schewina, Kai Ingo and Vihs, Jana},
+  publisher = {arXiv},
+  year = {2022},
+  doi = {10.48550/arXiv.2210.11218}  
+}
 ```
 
 ## Contact
