@@ -11,7 +11,7 @@ The paper is available at: [arXiv](https://doi.org/10.48550/arXiv.2210.11218)
 
 The paper was accepted to the [NeurIPS 2022 Tackling Climate Change with Machine Learning Workshop](https://nips.cc/virtual/2022/workshop/49964).
 
-![results](/recommendation4user.jpg)
+![results](/recommendation_user.jpg)
 
 ## Summary 
 
